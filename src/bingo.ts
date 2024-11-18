@@ -125,7 +125,7 @@ export class Bingo {
   static init(el: HTMLElement, sp: SeedParams) {
     const card = shuffle(
       choices.slice(),
-      xorshift7(`${sp.user} ${sp.ts}`)
+      xorshift7(`${sp.user.toLowerCase()} ${sp.ts}`)
     ).slice(0, 24);
 
     const bingo = new Bingo(el, sp);
