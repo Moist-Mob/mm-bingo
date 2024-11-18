@@ -2,7 +2,7 @@
   "name": "moist-bingo",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build:prod": "NODE_ENV=production tsup && cp index.html style.css dist",
     "build:dev": "NODE_ENV=development tsup"
