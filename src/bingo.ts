@@ -147,7 +147,8 @@ export class Bingo {
         const next = card.pop();
         if (!next) throw new Error('card size / document cell mismatch');
         label.textContent = next;
-        checkbox.checked = false;
+        checkbox.checked = checkbox.checked =
+          (sp.checked & (1 << (24 - idx))) > 0;
       }
 
       const refs = {
@@ -159,6 +160,8 @@ export class Bingo {
       };
       bingo.add(el, refs);
     });
+
+    bingo.updateWins();
 
     el.addEventListener('change', ev => {
       const target = ev.target;
@@ -183,10 +186,11 @@ export class Bingo {
 
     setParams({ ...this.sp, checked: this.checked });
 
-    this.updateWins(checkWin(this.checked));
+    this.updateWins();
   }
 
-  private updateWins(bitmasks: number[]) {
+  private updateWins() {
+    const bitmasks = checkWin(this.checked);
     const allBits = bitmasks.reduce((a, b) => a | b, 0);
     for (const [parent, refs] of this.cells.entries()) {
       const isWin = allBits & (1 << (24 - refs.idx));

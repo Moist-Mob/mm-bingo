@@ -6,6 +6,7 @@ export const tsup: Options = {
   splitting: true,
   clean: true, // clean up the dist folder
   dts: true, // generate dts files
+  sourcemap: env === 'development' ? 'inline' : false,
   format: ['iife'],
   minify: env === 'production',
   // bundle: env === 'production',
