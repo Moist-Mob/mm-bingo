@@ -1,0 +1,1 @@
+dist/index.global.js
