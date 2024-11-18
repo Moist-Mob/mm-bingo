@@ -5,16 +5,41 @@ html {
   width: 100%;
   height: 100%;
   font-family: sans-serif;
+  background-color: #075985;
+  color: #e4e4e7;
 }
 .top-heading {
   margin-bottom: auto;
   text-align: center;
+  background-color: #27272a;
+  padding: 1rem;
 }
 .top-heading .value {
   font-weight: bold;
 }
 .test {
   height: 5rem;
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: #71717a underline;
+}
+a:hover {
+  color: #f97316;
+  text-decoration: 2px #f97316 underline;
+}
+#header-link-wrap {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#main-wrap {
+  padding: 0.5rem;
 }
 
 body:not(.invalid) #error-wrap,
@@ -26,7 +51,7 @@ body:not(.valid) .generated-text {
 .error {
   position: absolute;
   inset: 0;
-  background-color: #00c;
+  /* background-color: #00c; */
 }
 .outer {
   position: relative;
@@ -35,7 +60,7 @@ body:not(.valid) .generated-text {
 
   width: 100%;
   height: 100%;
-  background-color: #cc0;
+  /* background-color: #cc0; */
   overflow: hidden;
 }
 .horiz {
@@ -45,7 +70,7 @@ body:not(.valid) .generated-text {
   gap: 1rem;
 
   width: 100%;
-  background-color: #c0c;
+  /* background-color: #c0c; */
   aspect-ratio: 9/10;
 
   margin-bottom: auto;
@@ -54,7 +79,7 @@ body:not(.valid) .generated-text {
 }
 .vert {
   position: relative;
-  background-color: #0cc;
+  /* background-color: #0cc; */
   height: 100%;
   aspect-ratio: 9/10;
   margin-left: auto;
@@ -62,7 +87,7 @@ body:not(.valid) .generated-text {
 }
 .grid .cell-inner {
   display: flex;
-  border: 1px dotted black;
+  /* border: 1px dotted black; */
   align-items: center;
   justify-content: center;
 }
@@ -80,6 +105,25 @@ body:not(.valid) .generated-text {
   width: 100%;
   height: 90%;
 }
+.grid.card .cell {
+  background-color: #0c4a6e;
+  border-right: 1px dotted #e4e4e7;
+  border-bottom: 1px dotted #e4e4e7;
+}
+.grid.card .cell:nth-child(1),
+.grid.card .cell:nth-child(2),
+.grid.card .cell:nth-child(3),
+.grid.card .cell:nth-child(4),
+.grid.card .cell:nth-child(5) {
+  border-top: 1px dotted #e4e4e7;
+}
+.grid.card .cell:nth-child(1),
+.grid.card .cell:nth-child(6),
+.grid.card .cell:nth-child(11),
+.grid.card .cell:nth-child(16),
+.grid.card .cell:nth-child(21) {
+  border-left: 1px dotted #e4e4e7;
+}
 
 .cell {
   position: relative;
@@ -95,11 +139,14 @@ body:not(.valid) .generated-text {
 .cell > .cell-inner:has(input[type='checkbox']:not(:disabled)) {
   cursor: pointer;
 }
+
 .cell > .cell-inner:has(input[type='checkbox']:checked) {
-  background-color: #c00;
+  background-color: #0284c7;
 }
+
 .cell.win > .cell-inner:has(input[type='checkbox']:checked) {
-  background-color: #0c0;
+  color: #fafafa;
+  background-color: #f97316;
 }
 
 .cell-inner input[type='checkbox'] {
