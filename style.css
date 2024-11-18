@@ -133,8 +133,43 @@ body:not(.valid) .generated-text {
   background-color: #0284c7;
 }
 
-.cell.win > .cell-inner:has(input[type='checkbox']:checked) {
-  color: #fafafa;
+.cell.win:nth-child(5n-4):has(input[type='checkbox']:checked)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  left: -6px;
+  width: 4px;
+  background-color: #f97316;
+}
+
+.cell.win:nth-child(5n):has(input[type='checkbox']:checked)::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 100%;
+  right: -6px;
+  width: 4px;
+  background-color: #f97316;
+}
+
+.cell.win:nth-child(-n + 5):has(input[type='checkbox']:checked)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: -6px;
+  height: 4px;
+  background-color: #f97316;
+}
+
+.cell.win:nth-child(n + 5):has(input[type='checkbox']:checked)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: -6px;
+  height: 4px;
   background-color: #f97316;
 }
 
