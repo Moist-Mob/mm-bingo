@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body,
 html {
   margin: 0;
@@ -51,7 +55,6 @@ body:not(.valid) .generated-text {
 .error {
   position: absolute;
   inset: 0;
-  /* background-color: #00c; */
 }
 .outer {
   position: relative;
@@ -60,7 +63,6 @@ body:not(.valid) .generated-text {
 
   width: 100%;
   height: 100%;
-  /* background-color: #cc0; */
   overflow: hidden;
 }
 .horiz {
@@ -70,7 +72,6 @@ body:not(.valid) .generated-text {
   gap: 1rem;
 
   width: 100%;
-  /* background-color: #c0c; */
   aspect-ratio: 9/10;
 
   margin-bottom: auto;
@@ -79,7 +80,6 @@ body:not(.valid) .generated-text {
 }
 .vert {
   position: relative;
-  /* background-color: #0cc; */
   height: 100%;
   aspect-ratio: 9/10;
   margin-left: auto;
@@ -87,7 +87,6 @@ body:not(.valid) .generated-text {
 }
 .grid .cell-inner {
   display: flex;
-  /* border: 1px dotted black; */
   align-items: center;
   justify-content: center;
 }
@@ -105,24 +104,14 @@ body:not(.valid) .generated-text {
   width: 100%;
   height: 90%;
 }
+#bingo-card {
+  border-top: 1px solid #27272a;
+  border-left: 1px solid #27272a;
+}
 .grid.card .cell {
   background-color: #0c4a6e;
-  border-right: 1px dotted #e4e4e7;
-  border-bottom: 1px dotted #e4e4e7;
-}
-.grid.card .cell:nth-child(1),
-.grid.card .cell:nth-child(2),
-.grid.card .cell:nth-child(3),
-.grid.card .cell:nth-child(4),
-.grid.card .cell:nth-child(5) {
-  border-top: 1px dotted #e4e4e7;
-}
-.grid.card .cell:nth-child(1),
-.grid.card .cell:nth-child(6),
-.grid.card .cell:nth-child(11),
-.grid.card .cell:nth-child(16),
-.grid.card .cell:nth-child(21) {
-  border-left: 1px dotted #e4e4e7;
+  border-right: 1px solid #27272a;
+  border-bottom: 1px solid #27272a;
 }
 
 .cell {
