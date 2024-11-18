@@ -85,7 +85,7 @@ export const newParams = (
 
   const user =
     localStorage.getItem('user') ??
-    prompt('Enter your Twitch username (not display name)');
+    prompt('Enter your Twitch username (not display name)')?.trim();
 
   if (!user) return NewParamsFailure.UserCanceled;
   if (!isValidUser(user)) return NewParamsFailure.InvalidLogin;
