@@ -73,7 +73,7 @@ export const setParams = ({ user, ts, checked }: SeedParams): SeedParams => {
   url.searchParams.set('t', ts);
   url.searchParams.set('c', checked.toString(36));
 
-  window.history.pushState(null, '', url.toString());
+  window.history.replaceState(null, '', url.toString());
 
   return { user, ts, checked };
 };
