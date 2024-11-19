@@ -134,7 +134,7 @@ body:not(.valid) .generated-text {
   background-color: #0284c7;
 }
 
-.cell.win:nth-child(5n-4):has(input[type='checkbox']:checked)::after {
+.cell.win-h:nth-child(5n-4):has(input[type='checkbox']:checked)::after {
   content: '';
   display: block;
   position: absolute;
@@ -144,7 +144,7 @@ body:not(.valid) .generated-text {
   background-color: #f97316;
 }
 
-.cell.win:nth-child(5n):has(input[type='checkbox']:checked)::after {
+.cell.win-h:nth-child(5n):has(input[type='checkbox']:checked)::after {
   content: '';
   display: block;
   position: absolute;
@@ -154,7 +154,7 @@ body:not(.valid) .generated-text {
   background-color: #f97316;
 }
 
-.cell.win:nth-child(-n + 5):has(input[type='checkbox']:checked)::before {
+.cell.win-v:nth-child(-n + 5):has(input[type='checkbox']:checked)::before {
   content: '';
   display: block;
   position: absolute;
@@ -164,7 +164,7 @@ body:not(.valid) .generated-text {
   background-color: #f97316;
 }
 
-.cell.win:nth-child(n + 5):has(input[type='checkbox']:checked)::before {
+.cell.win-v:nth-child(n + 5):has(input[type='checkbox']:checked)::before {
   content: '';
   display: block;
   position: absolute;

@@ -10,20 +10,28 @@ export type CellData = {
 };
 
 export const TIMESTAMP_DIVISOR = 60_000;
-const winMasks = [
+
+const horizWins = [
   0b11111_00000_00000_00000_00000, 0b00000_11111_00000_00000_00000,
   0b00000_00000_11111_00000_00000, 0b00000_00000_00000_11111_00000,
   0b00000_00000_00000_00000_11111,
-
+];
+const vertWins = [
   0b10000_10000_10000_10000_10000, 0b01000_01000_01000_01000_01000,
   0b00100_00100_00100_00100_00100, 0b00010_00010_00010_00010_00010,
   0b00001_00001_00001_00001_00001,
-
+];
+const diagWins = [
   0b10000_01000_00100_00010_00001, 0b00001_00010_00100_01000_10000,
 ];
-
-const checkWin = (checked: number) =>
-  winMasks.filter(mask => (mask & checked) === mask);
+const checkWin = (checked: number, masks: number[]): number => {
+  let bits = 0;
+  for (let i = 0; i < masks.length; i++) {
+    const mask = masks[i];
+    if ((checked & mask) == mask) bits |= mask;
+  }
+  return bits;
+};
 
 export type SeedParams = {
   user: string;
@@ -190,14 +198,22 @@ export class Bingo {
   }
 
   private updateWins() {
-    const bitmasks = checkWin(this.checked);
-    const allBits = bitmasks.reduce((a, b) => a | b, 0);
+    const bits = this.checked;
+    const horizBits = checkWin(bits, horizWins) | checkWin(bits, diagWins);
+    const vertBits = checkWin(bits, vertWins) | checkWin(bits, diagWins);
+
     for (const [parent, refs] of this.cells.entries()) {
-      const isWin = allBits & (1 << (24 - refs.idx));
-      if (isWin) {
-        parent.classList.add('win');
+      const bit = 1 << (24 - refs.idx);
+      if (horizBits & bit) {
+        parent.classList.add('win-h');
       } else {
-        parent.classList.remove('win');
+        parent.classList.remove('win-h');
+      }
+
+      if (vertBits & bit) {
+        parent.classList.add('win-v');
+      } else {
+        parent.classList.remove('win-v');
       }
     }
   }
