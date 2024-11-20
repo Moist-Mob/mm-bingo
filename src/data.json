@@ -4,7 +4,7 @@
     { "title": "Builds A Homing Mist Wand" },
     { "title": "Loses A Bet" },
     { "title": "Imitates A Chat Sound", "tip": "(Says \"Chickennnnn\", \"Destroy Us All!\", Etc.)" },
-    { "title": "Builds A Trigger-Into-\"Melee\" Wand", "tip": "(Wand Procs A Short-Lifetime Projectile On A Trigger/Timer (<=2f): Chainsaw, Luminous Drill, Digging Bolt)" },
+    { "title": "Builds Wand With A Digging Payload On A Trigger", "tip": "(Trigger/Timer Procs A Short-Lifetime Projectile (<=2f): Chainsaw, Luminous Drill, Digging Bolt)" },
     { "title": "Has Twitchy Debuff (Non-TI)", "tip": "(Gets The Twitchy Debuff From A Mage)" },
     { "title": "Dies To Ukko" },
     { "title": "Says \"Hornt\"" },
