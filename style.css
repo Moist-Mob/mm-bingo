@@ -123,6 +123,8 @@ body:not(.valid) .generated-text {
   position: absolute;
   inset: 0;
   padding: 5%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   overflow: hidden;
   user-select: none;
 }
