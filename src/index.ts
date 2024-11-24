@@ -87,8 +87,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const genForSpan = assertId('generated-user');
   genForSpan.textContent = freshParams.user;
 
-  const genOnSpan = assertId('generated-ts');
   const date = new Date(parseInt(freshParams.ts, 36) * TIMESTAMP_DIVISOR);
+  const genAt = Math.round(date.getTime() / 1000);
+
+  let lastStr = '';
+
+  const units: [number, string][] = [
+    [60, 'second'],
+    [60, 'minute'],
+    [24, 'hour'],
+    [Infinity, 'day'],
+  ];
+
+  const human = (val: number): string => {
+    if (val === 0) return 'just now';
+    const suffix = val > 0 ? 'ago' : 'from now';
+    val = Math.abs(val);
+
+    for (const [n, label] of units) {
+      if (val < n) {
+        const approx = Math.round(val * 10) / 10;
+        return `${approx} ${label}${approx !== 1 ? 's' : ''} ${suffix}`;
+      }
+      val /= n;
+    }
+    return '(error)';
+  };
+
+  const genOnSpan = assertId('generated-ts');
   const opts: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     month: 'short',
@@ -98,5 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
     minute: 'numeric',
   };
   const fmt = new Intl.DateTimeFormat(undefined, opts);
-  genOnSpan.textContent = fmt.format(date);
+  tippy(genOnSpan, {
+    content: fmt.format(date),
+    touch: ['hold', 500],
+  });
+
+  const updateTime = () => {
+    const now = Math.round(Date.now() / 1000);
+    const diff = now - genAt;
+    const newStr = human(diff);
+    if (newStr !== lastStr) {
+      lastStr = newStr;
+      genOnSpan.textContent = newStr;
+      if (diff > 3600 * 8 || diff < 0) {
+        genOnSpan.classList.add('warning');
+      }
+    }
+  };
+  updateTime();
+  setInterval(updateTime, 1000);
 });

@@ -34,6 +34,29 @@ a:hover {
   color: #f97316;
   text-decoration: 2px #f97316 underline;
 }
+#generated-ts.warning {
+  color: #dc2626;
+  background-color: #fdba74;
+  border-radius: 9999px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.tippy-box .tippy-content {
+  border: 1px solid #e4e4e7 !important;
+  border-radius: 5px;
+}
+.tippy-box[data-placement^='top'] .tippy-arrow::before {
+  border-top-color: #e4e4e7 !important;
+}
+.tippy-box[data-placement^='bottom'] .tippy-arrow::before {
+  border-bottom-color: #e4e4e7 !important;
+}
+.tippy-box[data-placement^='left'] .tippy-arrow::before {
+  border-left-color: #e4e4e7 !important;
+}
+.tippy-box[data-placement^='right'] .tippy-arrow::before {
+  border-right-color: #e4e4e7 !important;
+}
 #header-link-wrap {
   margin-top: 0.5rem;
   display: flex;
