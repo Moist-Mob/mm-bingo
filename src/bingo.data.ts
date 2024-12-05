@@ -8,6 +8,7 @@ export const choices: BingoCell[] = [
   { title: 'Builds Wand With A Greek Letter Spell' },
   { title: 'Builds Minigun Wand', tip: 'Extremely High Fire Rate' },
   { title: 'Builds Self-Healing Wand' },
+  { title: 'Builds Wand Utilizing An "Always Cast"', tip: 'Must Contribute To The Wand, Not Just Be Present' },
   // ...or refused
   { title: 'Discards A Nuke' },
 
@@ -22,13 +23,16 @@ export const choices: BingoCell[] = [
   // alchemy
   { title: 'Creates Pheremone', tip: 'Via Alchemical Reaction' },
   { title: 'Creates Stable Teleportatium', tip: 'Via Alchemical Reaction' },
+  { title: 'Creates Something Using Mimicium', tip: 'Via Alchemical Reaction' },
 
   // encounters
   { title: 'Finds Alchemic Precursor Or Lively Concoction' },
   { title: 'Finds The Potion Room' },
   { title: 'Finds The Gold Mining Drill' },
   { title: 'Finds The Hiisi Bar' },
+  { title: 'Finds A Greater Chest By Chance', tip: "(Force Spawn By Player Positioning Doesn't Count)" },
   { title: 'Sees The Ultimate Killer', tip: 'Kauhuhirviö' },
+  { title: 'Sees A Mimic' },
   { title: 'Picks Up Gold Skull Nugget', tip: '10k Gold Nugget' },
   { title: 'Bomb In A Chest!' },
   { title: 'Thunder Stone In A Chest!' },
@@ -38,6 +42,8 @@ export const choices: BingoCell[] = [
   { title: 'Enters The Pyramid' },
   { title: 'Enters Fungal Caverns', tip: 'Any Of Them' },
   { title: 'Enters A Parallel World', tip: '"Entered East/West X" Text Appears' },
+  { title: 'Enters Heaven', tip: '"Entered The Work (Sky)" Text Appears' },
+  { title: 'Enters Hell', tip: '"Entered The Work (Hell)" Text Appears' },
   { title: 'Visits The Atreevement Pillars' },
   { title: 'Buys From An "Alternate" Shop', tip: 'Buys An Item From Any Non-Holy-Mountain Shop' },
 
@@ -50,6 +56,7 @@ export const choices: BingoCell[] = [
   { title: 'Wormy Vision', tip: 'Affected By The "Wormy Vision" Effect / Consumes Worm Blood' },
   { title: 'Blinded', tip: 'Affected By The "Blindness" Effect' },
   { title: 'Confused', tip: 'Affected By The "Confused" Effect' },
+  { title: 'Protected (Ambrosia)', tip: 'Affected By The "Protection From All Effect" / Has Ambrosia Stain' },
 
   // game state
   { title: 'Has 2+ Orbs' },
@@ -110,6 +117,8 @@ export const choices: BingoCell[] = [
   { title: 'Dies To The Boss', tip: 'Or The Boss Arena' },
   { title: 'Dies To Giga Black Hole' },
   { title: 'Dies To A Frozen Vapor Canister' },
+  { title: 'Dies To Own Wand', tip: 'Fires A Wand That Kills Him Directly' },
+  { title: 'Dies To "Bullshit"', tip: 'He Must Say The Actual World "Bullshit"' },
 
   // victory and defeat
   { title: 'Wins A Run!' },
@@ -128,6 +137,9 @@ export const choices: BingoCell[] = [
   { title: 'Calls The Red Acid-Filled Bomb A Nuke' },
   { title: 'Takes Off His Headset In Rage' },
   { title: 'Says A Meme "Ironically"', tip: '"Skibidi", "Rizz", Etc.' },
+  { title: 'Consults ChatGPT For Advice' },
+  { title: 'Promises A YouTube Video Soon(tm)', tip: 'I Just Need To...' },
+  { title: 'Declares He\'s Opening Shop, Then Reads "One More" Message And Rants Instead' },
 ];
 
 // not yet implemented; need some feedback from chase first. the intent here
@@ -137,4 +149,14 @@ export const choices: BingoCell[] = [
 // space). this would hopefully make it easier to add more variety without
 // making bingos extra challenging, and add a little hype around winning with
 // a "rare" square
-export const rare: BingoCell[] = [];
+export const rare: BingoCell[] = [
+  { title: 'Is Naked On Stream', tip: 'Appears On Stream Without Wearing The Hoodie' },
+  { title: 'Enters Serious Mode', tip: 'Puts On Crown / Puts Up Hoodie' },
+
+  // note: "rare" as in "appears rarely on a card" - not "occurs rarely"
+  { title: 'Platforms Degeneracy', tip: 'Disgusted By Something He Shares/Reads/Shows On Stream' },
+  { title: 'Rants For 1+ Hour', tip: 'Game First Opened On Stream After The 1 Hour Mark' },
+
+  { title: 'Has Glass Cannon' },
+  { title: 'Takes A Lap On The Racetrack' },
+];
