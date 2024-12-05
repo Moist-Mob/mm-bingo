@@ -118,7 +118,7 @@ export const choices: BingoCell[] = [
   { title: 'Dies To Giga Black Hole' },
   { title: 'Dies To A Frozen Vapor Canister' },
   { title: 'Dies To Own Wand', tip: 'Fires A Wand That Kills Him Directly' },
-  { title: 'Dies To "Bullshit"', tip: 'He Must Say The Actual World "Bullshit"' },
+  { title: 'Dies To "Bullshit"', tip: 'He Must Say The Actual Word "Bullshit"' },
 
   // victory and defeat
   { title: 'Wins A Run!' },
