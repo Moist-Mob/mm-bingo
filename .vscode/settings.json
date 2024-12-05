@@ -1,15 +1,9 @@
 {
   "editor.tabSize": 2,
-  "prettier.arrowParens": "avoid",
-  "prettier.trailingComma": "es5",
-  "prettier.singleQuote": true,
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
     "dist/*": true
-  },
-  "[json]": {
-    "prettier.printWidth": 200
   }
 }
