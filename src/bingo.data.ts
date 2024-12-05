@@ -139,7 +139,10 @@ export const choices: BingoCell[] = [
   { title: 'Says A Meme "Ironically"', tip: '"Skibidi", "Rizz", Etc.' },
   { title: 'Consults ChatGPT For Advice' },
   { title: 'Promises A YouTube Video Soon(tm)', tip: 'I Just Need To...' },
-  { title: 'Declares He\'s Opening Shop, Then Reads "One More" Message And Rants Instead' },
+  {
+    title: 'Declares He\'s Opening Shop, Then Reads "One More" Message And Rants Instead',
+    tip: `Says He IS Opening The Shop, NOT He Will "Soon/Shortly/In A Moment"`,
+  },
 ];
 
 // not yet implemented; need some feedback from chase first. the intent here
