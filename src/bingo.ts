@@ -1,5 +1,5 @@
 import { PRNG, xorshift7 } from 'seedrandom';
-import { free, choices } from './data.json';
+import { free, choices } from './bingo.data';
 
 export type CellData = {
   idx: number;
@@ -137,10 +137,8 @@ export class Bingo {
   }
 
   static init(el: HTMLElement, sp: SeedParams) {
-    const card = shuffle(
-      choices.slice(),
-      xorshift7(`${sp.user.toLowerCase()} ${sp.ts}`)
-    ).slice(0, 24);
+    const rng = xorshift7(`${sp.user.toLowerCase()} ${sp.ts}`);
+    const card = shuffle(choices.slice(), rng).slice(0, 24);
 
     const bingo = new Bingo(el, sp);
 
@@ -158,8 +156,13 @@ export class Bingo {
         checkbox.checked = true;
         checkbox.disabled = true;
       } else {
-        const next = card.pop();
-        if (!next) throw new Error('card size / document cell mismatch');
+        const cell = card.pop();
+        if (!cell) throw new Error('card size / document cell mismatch');
+
+        // select randomly from mutually exclusive options
+        const next = Array.isArray(cell)
+          ? cell[Math.floor(rng.double() * cell.length)]
+          : cell;
 
         label.textContent = next.title;
         const parent = label.closest('.cell');
