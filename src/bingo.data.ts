@@ -41,7 +41,9 @@ export const choices: BingoCell[] = [
   { title: 'Enters The Tower' },
   { title: 'Enters The Pyramid' },
   { title: 'Enters Fungal Caverns', tip: 'Any Of Them' },
+  { title: 'Enters The Overgrown Cave', tip: '("Wand Mart"")' },
   { title: 'Enters A Parallel World', tip: '"Entered East/West X" Text Appears' },
+  { title: 'Enters The Dark Cave', tip: 'The Water-Filled Cave With Permanent Darkness / Hearts In It' },
   { title: 'Enters Heaven', tip: '"Entered The Work (Sky)" Text Appears' },
   { title: 'Enters Hell', tip: '"Entered The Work (Hell)" Text Appears' },
   { title: 'Visits The Atreevement Pillars' },
@@ -53,7 +55,8 @@ export const choices: BingoCell[] = [
   { title: 'Frozen', tip: 'Affected By The "Frozen" Effect / Frozen In Place' },
   { title: 'Tripping', tip: 'Affected By The "Tripping" Effect' },
   { title: 'Stunned', tip: 'Affected By The "Stunned" Effect / Frozen In Place' },
-  { title: 'Wormy Vision', tip: 'Affected By The "Wormy Vision" Effect / Consumes Worm Blood' },
+  // mostly-redundant with "Enters The Dark Cave"
+  // { title: 'Wormy Vision', tip: 'Affected By The "Wormy Vision" Effect / Consumes Worm Blood' },
   { title: 'Blinded', tip: 'Affected By The "Blindness" Effect' },
   { title: 'Confused', tip: 'Affected By The "Confused" Effect' },
   { title: 'Protected (Ambrosia)', tip: 'Affected By The "Protection From All Effect" / Has Ambrosia Stain' },
@@ -68,6 +71,8 @@ export const choices: BingoCell[] = [
   { title: 'Takes A Rat Perk', tip: 'Plague Rats, Revenge Rats, Spontaneous Generation' },
   { title: 'Dice Perk Sweep', tip: 'Acquires Every Perk In A Holy Mountain' },
   { title: 'Has Extra Legs', tip: 'Spider Legs, Leggy Legs' },
+  { title: 'Gamble', tip: 'Takes The Gamble Perk' },
+  // ...or refused
   { title: 'Skips Glass Cannon', tip: 'Takes A Different Perk, Re-Rolls It, Leaves Without Taking A Perk' },
 
   // mistakes were made
@@ -84,6 +89,7 @@ export const choices: BingoCell[] = [
   { title: 'Pees On A Healer', tip: 'Pours Flask Contents Onto A Healer' },
   { title: 'Explodes Stuff While Berserked' },
   { title: 'Teleports To Previous Level From Holy Mountain' },
+  { title: 'Performs The Heart Mage Trick', tip: 'Uses Haavoittajamestari To Reduce Max HP, Then Picks Up Hearts Before Effect Wears Off' },
 
   // quest lines
   { title: 'Kicks All 3 Hand Statues' },
@@ -162,4 +168,6 @@ export const rare: BingoCell[] = [
 
   { title: 'Has Glass Cannon' },
   { title: 'Takes A Lap On The Racetrack' },
+
+  { title: 'Re-Enters An Active Holy Mountain', tip: "Visits A Holy Mountain That Hasn't Been Collapsed For A Second Time Or More" },
 ];
