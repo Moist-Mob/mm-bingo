@@ -1,4 +1,4 @@
-import { PRNG, xorshift7 } from 'seedrandom';
+import { PRNG, alea } from 'seedrandom';
 import { free, choices } from './bingo.data';
 
 export type CellData = {
@@ -137,7 +137,7 @@ export class Bingo {
   }
 
   static init(el: HTMLElement, sp: SeedParams) {
-    const rng = xorshift7(`${sp.user.toLowerCase()} ${sp.ts}`);
+    const rng = alea(`${sp.user.toLowerCase()} ${sp.ts}\n`);
     const card = shuffle(choices.slice(), rng).slice(0, 24);
 
     const bingo = new Bingo(el, sp);
