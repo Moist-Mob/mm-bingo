@@ -1,4 +1,5 @@
 import { PRNG, alea } from 'seedrandom';
+import tippy from 'tippy.js';
 import { free, choices } from './bingo.data';
 
 export type CellData = {

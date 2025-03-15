@@ -15,4 +15,8 @@ export const tsup: Options = {
   target: 'es2020',
   // outDir: env === 'production' ? 'dist' : 'lib',
   outDir: 'dist',
+  replaceNodeEnv: true,
+  env: {
+    NODE_ENV: env ?? 'production',
+  },
 };
