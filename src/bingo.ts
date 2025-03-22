@@ -126,7 +126,7 @@ const shuffle = <T>(arr: T[], rng: PRNG): T[] => {
 };
 
 const mix = (sp: SeedParams, arr: BingoCell[], rng: PRNG): BingoCell[] => {
-  const n = parseInt(sp.ts, 36) * TIMESTAMP_DIVISOR - 3600_000 * 5;
+  const n = parseInt(sp.ts, 36) * TIMESTAMP_DIVISOR - 3600_000 * 5 - 86400_000;
   if (n < 1743465600000 || n >= 1743552000000) return arr;
 
   // prettier-ignore
