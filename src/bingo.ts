@@ -1,6 +1,6 @@
 import { PRNG, alea } from 'seedrandom';
 import tippy from 'tippy.js';
-import { free, choices } from './bingo.data';
+import { free, choices, BingoCell } from './bingo.data';
 
 export type CellData = {
   idx: number;
@@ -125,6 +125,32 @@ const shuffle = <T>(arr: T[], rng: PRNG): T[] => {
   return arr;
 };
 
+const mix = (sp: SeedParams, arr: BingoCell[], rng: PRNG): BingoCell[] => {
+  const n = parseInt(sp.ts, 36) * TIMESTAMP_DIVISOR - 3600_000 * 5;
+  if (n < 1743465600000 || n >= 1743552000000) return arr;
+
+  // prettier-ignore
+  const data = shuffle(['SXMgQmFsZA==','SXMgT2xk','SXMgTGF0ZQ==','U3RpbGwgV29ya2luZyBPbiBEdW5rYm90IDIuMA=='], rng).concat('QWx3YXlzIHRydWU=').map(atob);
+
+  let p!: number;
+  let d!: number;
+  // prettier-ignore
+  switch (Math.floor(rng() * 4)) {
+    case 0: p = 0, d = 6; break;
+    case 1: p = 20, d = -4; break;
+    case 2: p = 10, d = 1; break;
+    case 3: p = 2, d = 5; break;
+  }
+
+  for (let i = 0; i < 4; i++) {
+    arr[p > 12 ? p - 1 : p] = { title: data[i], tip: data[4] };
+    p += d;
+    if (i === 1) p += d;
+  }
+
+  return arr;
+};
+
 export class Bingo {
   private cells = new Map<HTMLElement, CellData>();
   private checked: number;
@@ -139,7 +165,7 @@ export class Bingo {
 
   static init(el: HTMLElement, sp: SeedParams) {
     const rng = alea(`${sp.user.toLowerCase()} ${sp.ts}\n`);
-    const card = shuffle(choices.slice(), rng).slice(0, 24);
+    const card = mix(sp, shuffle(choices.slice(), rng).slice(0, 24), rng);
 
     const bingo = new Bingo(el, sp);
 
