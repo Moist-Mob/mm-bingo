@@ -21,7 +21,7 @@ export const choices: BingoCell[] = [
   { title: 'Casts The End Of Everything' },
 
   // alchemy
-  { title: 'Creates Pheremone', tip: 'Via Alchemical Reaction' },
+  { title: 'Creates Pheromone', tip: 'Via Alchemical Reaction' },
   { title: 'Creates Stable Teleportatium', tip: 'Via Alchemical Reaction' },
   { title: 'Creates Something Using Mimicium', tip: 'Via Alchemical Reaction' },
 
