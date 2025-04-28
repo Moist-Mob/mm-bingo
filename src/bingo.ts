@@ -1,6 +1,7 @@
 import { PRNG, alea } from 'seedrandom';
 import tippy from 'tippy.js';
 import { free, choices } from './bingo.data';
+import { SeedParams } from './params';
 
 export type CellData = {
   idx: number;
@@ -40,77 +41,7 @@ const checkWin = (checked: number, masks: number[]): number => {
   return bits;
 };
 
-export type SeedParams = {
-  user: string;
-  ts: string;
-  checked: number;
-};
-
-const isValidUser = (str: string) => /^[a-z0-9][a-z0-9_]{3,24}$/i.test(str);
-const isValidTimestamp = (ts: string) => {
-  const int = parseInt(ts, 36);
-  return int && int > 0;
-};
-const ALWAYS_CHECKED = 0b00000_00000_00100_00000_00000;
-const isValidChecked = (bits: number) =>
-  Number.isInteger(bits) &&
-  bits >= 0 &&
-  bits <= 0b11111_11111_11111_11111_11111 &&
-  (bits & ALWAYS_CHECKED) === ALWAYS_CHECKED;
-
-export const getParams = (): Partial<SeedParams> => {
-  const sp = new URL(window.location.href).searchParams;
-
-  const user = sp.get('u') ?? localStorage.getItem('user') ?? '';
-  const ts = sp.get('t') ?? '';
-  const checked = parseInt(sp.get('c') ?? '', 36);
-
-  return {
-    user: isValidUser(user) ? user : undefined,
-    ts: isValidTimestamp(ts) ? ts : undefined,
-    checked: isValidChecked(checked) ? checked : ALWAYS_CHECKED,
-  };
-};
-
-export enum NewParamsFailure {
-  UserCanceled,
-  InvalidLogin,
-}
-
-export const isParams = (v: Partial<SeedParams>): v is SeedParams =>
-  typeof v.user === 'string' && typeof v.ts === 'string';
-
-export const setParams = ({ user, ts, checked }: SeedParams): SeedParams => {
-  localStorage.setItem('user', user);
-
-  const url = new URL(window.location.href);
-  url.searchParams.set('u', user);
-  url.searchParams.set('t', ts);
-  url.searchParams.set('c', checked.toString(36));
-
-  window.history.replaceState(null, '', url.toString());
-
-  return { user, ts, checked };
-};
-
-export const newParams = (
-  resetUser: boolean = false
-): SeedParams | NewParamsFailure => {
-  if (resetUser) localStorage.removeItem('user');
-
-  const user =
-    localStorage.getItem('user') ??
-    prompt('Enter your Twitch username (not display name)')?.trim();
-
-  if (!user) return NewParamsFailure.UserCanceled;
-  if (!isValidUser(user)) return NewParamsFailure.InvalidLogin;
-
-  return setParams({
-    user,
-    ts: Math.floor(Date.now() / TIMESTAMP_DIVISOR).toString(36),
-    checked: ALWAYS_CHECKED,
-  });
-};
+export const ALWAYS_CHECKED = 0b00000_00000_00100_00000_00000;
 
 const shuffle = <T>(arr: T[], rng: PRNG): T[] => {
   let i = arr.length,
@@ -127,11 +58,8 @@ const shuffle = <T>(arr: T[], rng: PRNG): T[] => {
 
 export class Bingo {
   private cells = new Map<HTMLElement, CellData>();
-  private checked: number;
 
-  private constructor(readonly el: HTMLElement, private sp: SeedParams) {
-    this.checked = sp.checked;
-  }
+  private constructor(readonly el: HTMLElement, private sp: SeedParams) {}
 
   private add(el: HTMLDivElement, refs: CellData) {
     this.cells.set(el, refs);
@@ -184,8 +112,7 @@ export class Bingo {
           });
         }
 
-        checkbox.checked = checkbox.checked =
-          (sp.checked & (1 << (24 - idx))) > 0;
+        checkbox.checked = sp.isChecked(idx);
       }
 
       const refs = {
@@ -200,10 +127,21 @@ export class Bingo {
 
     bingo.updateWins();
 
+    const mutable = sp.mutable;
+    if (!mutable) {
+      el.classList.add('immutable');
+    }
     el.addEventListener('change', ev => {
       const target = ev.target;
       if (!(target instanceof HTMLInputElement)) return;
       if (target.getAttribute('type') !== 'checkbox') return;
+
+      if (!mutable) {
+        target.checked = !target.checked;
+        ev.preventDefault();
+        return;
+      }
+
       bingo.onChanged(target);
     });
   }
@@ -214,20 +152,12 @@ export class Bingo {
     if (!refs) return;
 
     const { idx } = refs;
-    if (target.checked) {
-      this.checked |= 1 << (24 - idx);
-    } else {
-      this.checked &=
-        (~(1 << (24 - idx)) >>> 0) & 0b11111_11111_11111_11111_11111;
-    }
-
-    setParams({ ...this.sp, checked: this.checked });
-
+    this.sp.setChecked(idx, target.checked);
     this.updateWins();
   }
 
   private updateWins() {
-    const bits = this.checked;
+    const bits = this.sp.checkedBits();
     const horizBits = checkWin(bits, horizWins) | checkWin(bits, diagWins);
     const vertBits = checkWin(bits, vertWins) | checkWin(bits, diagWins);
 

@@ -3,14 +3,8 @@ import 'tippy.js/dist/tippy.css';
 
 import tippy from 'tippy.js';
 import { TextScaler } from './textscaler.js';
-import {
-  Bingo,
-  getParams,
-  isParams,
-  newParams,
-  NewParamsFailure,
-  TIMESTAMP_DIVISOR,
-} from './bingo.js';
+import { Bingo, TIMESTAMP_DIVISOR } from './bingo.js';
+import { NewParamsFailure, SeedParams } from './params';
 
 const initFit = () => {
   let lastDim: number;
@@ -58,13 +52,12 @@ const initHeaderLinks = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderLinks();
 
-  const envParams = getParams();
-  const freshParams = isParams(envParams) ? envParams : newParams();
+  const params = SeedParams.fromUrl() ?? SeedParams.create();
 
   let errorMessage: string | undefined = undefined;
 
-  if (typeof freshParams === 'number') {
-    switch (freshParams) {
+  if (typeof params === 'number') {
+    switch (params) {
       case NewParamsFailure.InvalidLogin:
         errorMessage =
           'The username you entered does not appear to be a valid Twitch username. Be sure to use your login name, not your display name.';
@@ -73,25 +66,30 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMessage =
           'You canceled the username prompt. You must enter a valid Twitch username to generate a unique card for your use.';
         break;
+      default:
+        errorMessage = `Unknown error code: ${params}`;
+        break;
     }
 
     const el = assertId('error-wrap');
     el.textContent = errorMessage;
+    document.body.classList.remove('valid');
     document.body.classList.add('invalid');
     return;
   }
 
+  document.body.classList.remove('invalid');
   document.body.classList.add('valid');
 
   const bingoEl = assertId('bingo-card');
 
-  Bingo.init(bingoEl, freshParams);
+  Bingo.init(bingoEl, params);
   initFit();
 
   const genForSpan = assertId('generated-user');
-  genForSpan.textContent = freshParams.user;
+  genForSpan.textContent = params.user;
 
-  const date = new Date(parseInt(freshParams.ts, 36) * TIMESTAMP_DIVISOR);
+  const date = params.ts;
   const genAt = Math.round(date.getTime() / 1000);
 
   let lastStr = '';
