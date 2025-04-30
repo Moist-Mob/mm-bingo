@@ -15,7 +15,7 @@ const posInt = (v: string): number | null => {
 
 const parseUser = (qv: string | null) => {
   if (typeof qv !== 'string') return null;
-  return /^[a-z0-9]{4,24}$/i.test(qv) ? qv : null;
+  return /^[a-z0-9_]{4,24}$/i.test(qv) ? qv : null;
 };
 
 const parseTimestamp = (qv: string | null): Date | null => {
