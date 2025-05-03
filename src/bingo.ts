@@ -66,7 +66,7 @@ export class Bingo {
   }
 
   static init(el: HTMLElement, sp: SeedParams) {
-    const rng = alea(`${sp.user.toLowerCase()} ${sp.ts}\n`);
+    const rng = alea(`${sp.user.toLowerCase()} ${sp.ts.getTime()}\n`);
     const card = shuffle(choices.slice(), rng).slice(0, 24);
 
     const bingo = new Bingo(el, sp);
