@@ -49,8 +49,27 @@ const initHeaderLinks = () => {
   }
 };
 
+const setBookmarking = () => {
+  document.body.classList.remove('valid', 'invalid');
+  document.body.classList.add('bookmarking');
+};
 document.addEventListener('DOMContentLoaded', () => {
   initHeaderLinks();
+
+  window.addEventListener('popstate', ev => {
+    if (ev.state !== 'bookmarking') window.location.reload();
+    else setBookmarking();
+  });
+  assertId('bookmark-link').addEventListener('click', ev => {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const url = new URL(window.location.href);
+    url.search = '';
+    window.history.pushState('bookmarking', '', url.toString());
+
+    setBookmarking();
+  });
 
   const params = SeedParams.fromUrl() ?? SeedParams.create();
 
@@ -80,6 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.body.classList.remove('invalid');
   document.body.classList.add('valid');
+
+  if (!params.mutable) {
+    let note: string = 'This card is read-only. ';
+    if (!params.isSavedUser) {
+      const viewer = localStorage.getItem('user') ?? '(not set)';
+      note += `It was generated for '${params.user}', but you are '${viewer}'.`;
+    } else {
+      note += `It was generated too long ago.`;
+    }
+
+    assertId('note-wrap').textContent = note;
+    document.body.classList.add('note');
+  }
 
   const bingoEl = assertId('bingo-card');
 

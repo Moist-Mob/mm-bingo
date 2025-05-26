@@ -17,6 +17,9 @@ html {
   text-align: center;
   background-color: #27272a;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .top-heading .value {
   font-weight: bold;
@@ -28,8 +31,14 @@ html {
 a,
 a:visited {
   color: inherit;
+  text-decoration: #38bdf8 underline;
+  text-underline-offset: 0.15rem;
+}
+.top-heading a,
+.top-heading a:visited {
   text-decoration: #71717a underline;
 }
+
 a:hover {
   color: #f97316;
   text-decoration: 2px #f97316 underline;
@@ -58,7 +67,6 @@ a:hover {
   border-right-color: #e4e4e7 !important;
 }
 #header-link-wrap {
-  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -71,9 +79,24 @@ a:hover {
 }
 
 body:not(.invalid) #error-wrap,
+body:not(.note) #note-wrap,
 body:not(.valid) #main-wrap,
-body:not(.valid) .generated-text {
+body:not(.valid) #generated-text,
+body:not(.bookmarking) #bookmark-instructions {
   display: none !important;
+}
+
+#note-wrap {
+  color: #a1a1aa;
+  position: relative;
+  top: 0.25rem;
+}
+
+#bookmark-instructions {
+  margin: 2rem auto;
+  height: 100%;
+  width: 50ch;
+  text-align: center
 }
 
 .error {

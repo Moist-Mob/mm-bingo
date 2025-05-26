@@ -45,6 +45,8 @@ const parseChecked = (qv: string | null): number | null => {
 export class SeedParams {
   readonly user: string;
   readonly ts: Date;
+  readonly isSavedUser: boolean;
+  readonly isTooOld: boolean;
   readonly mutable: boolean;
 
   private checked: number;
@@ -53,17 +55,18 @@ export class SeedParams {
     user,
     ts,
     checked,
-    mutable,
   }: {
     user: string;
     ts: Date;
     checked: number;
-    mutable: boolean;
   }) {
     this.user = user;
     this.ts = ts;
     this.checked = checked;
-    this.mutable = mutable;
+
+    this.isSavedUser = this.user === localStorage.getItem('user');
+    this.isTooOld = ts.getTime() <= Date.now() - 86400_000;
+    this.mutable = this.isSavedUser && !this.isTooOld;
 
     this.updateUrl();
   }
@@ -97,9 +100,7 @@ export class SeedParams {
 
     if (user === null || ts === null || checked === null) return null;
 
-    const mutable = localStorage.getItem('user') === user;
-
-    return new SeedParams({ user, ts, checked, mutable });
+    return new SeedParams({ user, ts, checked });
   }
 
   static create(resetUser: boolean = false) {
@@ -125,7 +126,7 @@ export class SeedParams {
     );
     const checked = ALWAYS_CHECKED;
 
-    return new SeedParams({ user, ts, checked, mutable: true });
+    return new SeedParams({ user, ts, checked });
   }
 
   isChecked(cell: number): boolean {
