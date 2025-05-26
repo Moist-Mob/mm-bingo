@@ -79,7 +79,7 @@ a:hover {
 }
 
 body:not(.invalid) #error-wrap,
-body:not(.note) #note-wrap,
+body:not(.note):not(.bookmarking) #note-wrap,
 body:not(.valid) #main-wrap,
 body:not(.valid) #generated-text,
 body:not(.bookmarking) #bookmark-instructions {
