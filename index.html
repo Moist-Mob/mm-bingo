@@ -1,125 +1,182 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Moist Bingo</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Moist Bingo</title>
-  <link rel="stylesheet" type="text/css" href="index.css" />
-</head>
-
-<body class="">
-  <div class="outer">
-    <div class="top-heading">
-      <div class="generated-text">
-        Generated <span id="generated-ts" class="value"></span> for <span id="generated-user" class="value"></span>
+  <body class="">
+    <div class="outer">
+      <div class="top-heading">
+        <div id="generated-text">
+          Generated <span id="generated-ts" class="value"></span> for
+          <span id="generated-user" class="value"></span>
+        </div>
+        <div id="error-wrap"></div>
+        <div id="header-link-wrap">
+          <a class="new-card" href="">New Card</a>
+          <a class="reset-user" href="">Reset User</a>
+          <a id="bookmark-link" href="?bookmark=true">Bookmark</a>
+        </div>
+        <small id="note-wrap"></small>
       </div>
-      <div id="error-wrap"></div>
-      <div id="header-link-wrap">
-        <a class="new-card" href="#">New Card</a>
-        <a class="reset-user" href="#">Reset User</a>
-      </div>
-    </div>
-    <div id="main-wrap" class="horiz">
-      <div class="vert">
-        <div class="grid heading">
-          <div class="cell">
-            <label class="cell-inner">N</label>
+      <p id="bookmark-instructions">
+        You can now safely bookmark this page. When you visit the bookmark, a
+        new card will be generated for you. Click your browser's Back button to
+        reload your previous card, or <a href="">New Card</a> to get a fresh
+        one.
+      </p>
+      <div id="main-wrap" class="horiz">
+        <div class="vert">
+          <div class="grid heading">
+            <div class="cell">
+              <label class="cell-inner">N</label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner">O</label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner">I</label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner">T</label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner">A</label>
+            </div>
           </div>
-          <div class="cell">
-            <label class="cell-inner">O</label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner">I</label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner">T</label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner">A</label>
+          <div id="bingo-card" class="grid card">
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
+            <div class="cell">
+              <label class="cell-inner"
+                ><input type="checkbox" /> <span class="cell-label"></span
+              ></label>
+            </div>
           </div>
         </div>
-        <div id="bingo-card" class="grid card">
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-          <div class="cell">
-            <label class="cell-inner"><input type="checkbox" /> <span class="cell-label"></span></label>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
-  <script src="index.global.js"></script>
-</body>
-
+    <script src="index.global.js"></script>
+  </body>
 </html>
