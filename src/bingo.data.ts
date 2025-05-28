@@ -79,7 +79,7 @@ export const choices: BingoCell[] = [
   { title: 'Fails To Re-Enter Holy Mountain', tip: 'Fails To Fly Back In, Misses A Teleport, Unintentionally Collapses Holy Mountain' },
   { title: 'Forgets He Has An Immunity', tip: 'Fire / Toxic / Explosion / Melee / Electric Immunity; Exploding Corpses, Freeze Field, Gas Fire; Gas / Oil Blood' },
   { title: 'Forgets To Fill His Flask', tip: 'Leaves A Holy Mountain Without A Mostly-Full Water Flask; Only When There Is An Available Flask To Use' },
-  { title: 'All Fish Die In Any Holy Mountain', tip: 'Fish Were Alive At Arrival' },
+  { title: 'All Fish Die In Any Active Holy Mountain', tip: 'Fish Were Alive At Arrival; Invalid After Holy Mountain Collapses' },
   { title: 'Accidentally Throws A Flask' },
   { title: 'Accidentally Kills His Healer', tip: 'Healer Dies While Attempting To Save Or Heal With It' },
   { title: 'Breaks The Hourglass' },
