@@ -3,7 +3,7 @@ import 'tippy.js/dist/tippy.css';
 
 import tippy from 'tippy.js';
 import { TextScaler } from './textscaler.js';
-import { Bingo, TIMESTAMP_DIVISOR } from './bingo.js';
+import { Bingo } from './bingo.js';
 import { NewParamsFailure, SeedParams } from './params';
 
 const initFit = () => {

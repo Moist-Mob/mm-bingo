@@ -1,4 +1,5 @@
-import { ALWAYS_CHECKED, TIMESTAMP_DIVISOR } from './bingo';
+import { TIMESTAMP_DIVISOR } from './bingo';
+import { ALWAYS_CHECKED } from './card';
 
 export enum NewParamsFailure {
   UserCanceled,

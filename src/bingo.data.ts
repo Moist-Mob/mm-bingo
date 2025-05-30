@@ -1,4 +1,4 @@
-export type BingoItem = { title: string; tip?: string };
+export type BingoItem = { readonly title: string; readonly tip?: string; readonly uncommon?: boolean };
 export type BingoCell = BingoItem | BingoItem[];
 
 export const free = 'Chase Is Streaming!';
@@ -151,23 +151,23 @@ export const choices: BingoCell[] = [
   },
 ];
 
-// not yet implemented; need some feedback from chase first. the intent here
-// is to create a way to incorporate situational / not-broadly-well-suited
-// squares into the bingo by restricting the number of times they can occur
-// and avoiding main-line interactions (e.g. lines that go through the free
-// space). this would hopefully make it easier to add more variety without
-// making bingos extra challenging, and add a little hype around winning with
-// a "rare" square
-export const rare: BingoCell[] = [
-  { title: 'Is Naked On Stream', tip: 'Appears On Stream Without Wearing The Hoodie' },
-  { title: 'Enters Serious Mode', tip: 'Puts On Crown / Puts Up Hoodie' },
-
-  // note: "rare" as in "appears rarely on a card" - not "occurs rarely"
+// things that happen so frequently that they should not
+// occur commonly in a bingo card, but we can use them
+// for a little variety. keep these off the "free cell"
+// lines to make them a little harder to get a bingo with
+export const common: BingoItem[] = [
   { title: 'Platforms Degeneracy', tip: 'Disgusted By Something He Shares/Reads/Shows On Stream' },
   { title: 'Rants For 1+ Hour', tip: 'Game First Opened On Stream After The 1 Hour Mark' },
+  // { title: 'Re-Enters An Active Holy Mountain', tip: "Visits A Holy Mountain That Hasn't Been Collapsed For A Second Time Or More" },
+];
 
+// things that happen so infrequently that they should not
+// occur commonly in a bingo card, but we can use them
+// for a little variety. keep these _on_ the "free cell"
+// lines to make them a little easier to get a bingo with
+export const rare: BingoItem[] = [
+  { title: 'Is Naked On Stream', tip: 'Appears On Stream Without Wearing The Hoodie' },
+  { title: 'Enters Serious Mode', tip: 'Puts On Crown / Puts Up Hoodie' },
   { title: 'Has Glass Cannon' },
   { title: 'Takes A Lap On The Racetrack' },
-
-  { title: 'Re-Enters An Active Holy Mountain', tip: "Visits A Holy Mountain That Hasn't Been Collapsed For A Second Time Or More" },
 ];

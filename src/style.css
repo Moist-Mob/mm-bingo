@@ -185,6 +185,10 @@ body:not(.bookmarking) #bookmark-instructions {
   background-color: #0284c7;
 }
 
+/* .cell > .cell-inner:has(.uncommon) {
+  background-color: red;
+} */
+
 .cell.win-h:nth-child(5n-4):has(input[type='checkbox']:checked)::after {
   content: '';
   display: block;

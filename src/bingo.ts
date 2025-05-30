@@ -1,7 +1,7 @@
-import { PRNG, alea } from 'seedrandom';
 import tippy from 'tippy.js';
-import { free, choices } from './bingo.data';
+import { free } from './bingo.data';
 import { SeedParams } from './params';
+import { genCard, getHorizBits, getVertBits } from './card';
 
 export type CellData = {
   idx: number;
@@ -19,43 +19,6 @@ const INFO_ICON = `
 
 export const TIMESTAMP_DIVISOR = 60_000;
 
-const horizWins = [
-  0b11111_00000_00000_00000_00000, 0b00000_11111_00000_00000_00000,
-  0b00000_00000_11111_00000_00000, 0b00000_00000_00000_11111_00000,
-  0b00000_00000_00000_00000_11111,
-];
-const vertWins = [
-  0b10000_10000_10000_10000_10000, 0b01000_01000_01000_01000_01000,
-  0b00100_00100_00100_00100_00100, 0b00010_00010_00010_00010_00010,
-  0b00001_00001_00001_00001_00001,
-];
-const diagWins = [
-  0b10000_01000_00100_00010_00001, 0b00001_00010_00100_01000_10000,
-];
-const checkWin = (checked: number, masks: number[]): number => {
-  let bits = 0;
-  for (let i = 0; i < masks.length; i++) {
-    const mask = masks[i];
-    if ((checked & mask) == mask) bits |= mask;
-  }
-  return bits;
-};
-
-export const ALWAYS_CHECKED = 0b00000_00000_00100_00000_00000;
-
-const shuffle = <T>(arr: T[], rng: PRNG): T[] => {
-  let i = arr.length,
-    j,
-    temp;
-  while (--i > 0) {
-    j = Math.floor(rng.double() * (i + 1));
-    temp = arr[j];
-    arr[j] = arr[i];
-    arr[i] = temp;
-  }
-  return arr;
-};
-
 export class Bingo {
   private cells = new Map<HTMLElement, CellData>();
 
@@ -66,8 +29,7 @@ export class Bingo {
   }
 
   static init(el: HTMLElement, sp: SeedParams) {
-    const rng = alea(`${sp.user.toLowerCase()} ${sp.ts.getTime()}\n`);
-    const card = shuffle(choices.slice(), rng).slice(0, 24);
+    const card = genCard(`${sp.user.toLowerCase()} ${sp.ts.getTime()}\n`);
 
     const bingo = new Bingo(el, sp);
 
@@ -85,15 +47,11 @@ export class Bingo {
         checkbox.checked = true;
         checkbox.disabled = true;
       } else {
-        const cell = card.pop();
-        if (!cell) throw new Error('card size / document cell mismatch');
-
-        // select randomly from mutually exclusive options
-        const next = Array.isArray(cell)
-          ? cell[Math.floor(rng.double() * cell.length)]
-          : cell;
+        const next = card.pop();
+        if (!next) throw new Error('card size / document cell mismatch');
 
         label.textContent = next.title;
+        if (next.uncommon === true) label.classList.add('uncommon');
         const parent = label.closest('.cell');
         if (next.tip && parent) {
           const infoSpan = document.createElement('span');
@@ -158,8 +116,8 @@ export class Bingo {
 
   private updateWins() {
     const bits = this.sp.checkedBits();
-    const horizBits = checkWin(bits, horizWins) | checkWin(bits, diagWins);
-    const vertBits = checkWin(bits, vertWins) | checkWin(bits, diagWins);
+    const horizBits = getHorizBits(bits);
+    const vertBits = getVertBits(bits);
 
     for (const [parent, refs] of this.cells.entries()) {
       const bit = 1 << (24 - refs.idx);
