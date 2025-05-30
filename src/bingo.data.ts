@@ -157,7 +157,7 @@ export const choices: BingoCell[] = [
 // lines to make them a little harder to get a bingo with
 export const common: BingoItem[] = [
   { title: 'Platforms Degeneracy', tip: 'Disgusted By Something He Shares/Reads/Shows On Stream' },
-  { title: 'Rants For 1+ Hour', tip: 'Game First Opened On Stream After The 1 Hour Mark' },
+  { title: 'Start The Game Already!', tip: 'Twitch Stream Timer Reads >1 Hour Before Any Game Is Opened' },
   // { title: 'Re-Enters An Active Holy Mountain', tip: "Visits A Holy Mountain That Hasn't Been Collapsed For A Second Time Or More" },
 ];
 
