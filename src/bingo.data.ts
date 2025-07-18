@@ -88,7 +88,7 @@ export const choices: BingoCell[] = [
   { title: 'Healer Sandwich', tip: 'Intercepts Healing Bolts From Multiple Healers Targeting Each Other' },
   { title: 'Pees On A Healer', tip: 'Pours Flask Contents Onto A Healer' },
   { title: 'Explodes Stuff While Berserked' },
-  { title: 'Teleports To Previous Level From Holy Mountain' },
+  { title: 'Teleports To Previous Level From Holy Mountain', tip: 'Only When Level Is Otherwise Inaccessible. Teleporting Along A Path You Can Just Walk Doesn\'t Count, Bobo' },
   { title: 'Performs The Heart Mage Trick', tip: 'Uses Haavoittajamestari To Reduce Max HP, Then Picks Up Hearts Before Effect Wears Off' },
 
   // quest lines
