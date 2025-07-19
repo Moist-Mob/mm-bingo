@@ -4,11 +4,14 @@ export type BingoCell = BingoItem | BingoItem[];
 export const free = 'Chase Is Streaming!';
 export const choices: BingoCell[] = [
   // wands built...
-  { title: 'Builds Wand With A Digging Payload On A Trigger', tip: 'Trigger/Timer Procs A Short-Lifetime Projectile (<=2f): Chainsaw, Luminous Drill, Digging Bolt' },
-  { title: 'Builds Wand With A Greek Letter Spell' },
-  { title: 'Builds Minigun Wand', tip: 'Extremely High Fire Rate' },
-  { title: 'Builds Self-Healing Wand' },
-  { title: 'Builds Wand Utilizing An "Always Cast"', tip: 'Must Contribute To The Wand, Not Just Be Present' },
+  {
+    title: 'Builds New Wand With A Digging Payload On A Trigger',
+    tip: "Trigger/Timer Procs A Short-Lifetime Projectile (<=2f): Chainsaw, Luminous Drill, Digging Bolt. Rebuilding Existing Digger-Trigger Wand Doesn't Count.",
+  },
+  { title: "Builds New Wand With A Greek Letter Spell. Rebuilding Existing Greek Letter Wand Doesn't Count." },
+  { title: 'Builds New Minigun Wand', tip: "Extremely High Fire Rate. Rebuilding Existing Minigun Wand Doesn't Count." },
+  { title: 'Builds New Self-Healing Wand', tip: "Rebuilding Existing Self-Healing Wand Doesn't Count." },
+  { title: 'Builds New Wand Utilizing An "Always Cast"', tip: "Must Contribute To The Wand, Not Just Be Present. Rebuilding Existing Always Cast Wand Doesn't Count." },
   // ...or refused
   { title: 'Discards A Nuke' },
 
@@ -61,16 +64,16 @@ export const choices: BingoCell[] = [
   { title: 'Confused', tip: 'Affected By The "Confused" Effect' },
   { title: 'Protected (Ambrosia)', tip: 'Affected By The "Protection From All Effect" / Has Ambrosia Stain' },
 
-  // game state
-  { title: 'Has 2+ Orbs' },
-  { title: 'Has 500+ Maximum Health' },
-  { title: 'Has 10,000+ Gold' },
-  { title: 'Reroll Machine Costs 5,000+ Gold' },
+  // game state transitions
+  { title: 'Gains An Orb (2+)', tip: 'Orb Count Increases To >=2' },
+  { title: 'Permanent Max Health Passes 500+', tip: 'Max Health Changes From <=500 To >500. Temporary HP Decreases Are Excluded (Polymorph, Heartache, Etc.)' },
+  { title: 'Passes 10,000 Gold', tip: 'Gold Count Changes From <=10,000 To >10,000' },
+  { title: 'Reroll Machine Passes 5,000+ Gold', tip: 'Reroll Machine Cost Changes From <=5,000 To >5,000 Gold' },
 
   // perks taken...
   { title: 'Takes A Rat Perk', tip: 'Plague Rats, Revenge Rats, Spontaneous Generation' },
   { title: 'Dice Perk Sweep', tip: 'Acquires Every Perk In A Holy Mountain' },
-  { title: 'Has Extra Legs', tip: 'Spider Legs, Leggy Legs' },
+  { title: 'Gains Extra Legs', tip: 'Acquires Spider Legs, Leggy Legs' },
   { title: 'Gamble', tip: 'Takes The Gamble Perk' },
   // ...or refused
   { title: 'Skips Glass Cannon', tip: 'Takes A Different Perk, Re-Rolls It, Leaves Without Taking A Perk' },
@@ -88,7 +91,7 @@ export const choices: BingoCell[] = [
   { title: 'Healer Sandwich', tip: 'Intercepts Healing Bolts From Multiple Healers Targeting Each Other' },
   { title: 'Pees On A Healer', tip: 'Pours Flask Contents Onto A Healer' },
   { title: 'Explodes Stuff While Berserked' },
-  { title: 'Teleports To Previous Level From Holy Mountain', tip: 'Only When Level Is Otherwise Inaccessible. Teleporting Along A Path You Can Just Walk Doesn\'t Count, Bobo' },
+  { title: 'Teleports To Previous Level From Holy Mountain', tip: "Only When Level Is Otherwise Inaccessible. Teleporting Along A Path You Can Just Walk Doesn't Count, Bobo" },
   { title: 'Performs The Heart Mage Trick', tip: 'Uses Haavoittajamestari To Reduce Max HP, Then Picks Up Hearts Before Effect Wears Off' },
 
   // quest lines
@@ -168,6 +171,6 @@ export const common: BingoItem[] = [
 export const rare: BingoItem[] = [
   { title: 'Is Naked On Stream', tip: 'Appears On Stream Without Wearing The Hoodie' },
   { title: 'Enters Serious Mode', tip: 'Puts On Crown / Puts Up Hoodie' },
-  { title: 'Has Glass Cannon' },
+  { title: 'Takes Glass Cannon' },
   { title: 'Takes A Lap On The Racetrack' },
 ];
