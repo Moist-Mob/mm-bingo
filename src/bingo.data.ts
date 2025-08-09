@@ -8,7 +8,7 @@ export const choices: BingoCell[] = [
     title: 'Builds New Wand With A Digging Payload On A Trigger',
     tip: "Trigger/Timer Procs A Short-Lifetime Projectile (<=2f): Chainsaw, Luminous Drill, Digging Bolt. Rebuilding Existing Digger-Trigger Wand Doesn't Count.",
   },
-  { title: "Builds New Wand With A Greek Letter Spell. Rebuilding Existing Greek Letter Wand Doesn't Count." },
+  { title: 'Builds New Wand With A Greek Letter Spell', tip: "Rebuilding Existing Greek Letter Wand Doesn't Count." },
   { title: 'Builds New Minigun Wand', tip: "Extremely High Fire Rate. Rebuilding Existing Minigun Wand Doesn't Count." },
   { title: 'Builds New Self-Healing Wand', tip: "Rebuilding Existing Self-Healing Wand Doesn't Count." },
   { title: 'Builds New Wand Utilizing An "Always Cast"', tip: "Must Contribute To The Wand, Not Just Be Present. Rebuilding Existing Always Cast Wand Doesn't Count." },
