@@ -17,7 +17,7 @@ const INFO_ICON = `
 </svg>
 `;
 
-export const TIMESTAMP_DIVISOR = 60_000;
+export const TIMESTAMP_DIVISOR = 86400_000;
 
 export class Bingo {
   private cells = new Map<HTMLElement, CellData>();
